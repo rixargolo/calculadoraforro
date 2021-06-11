@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cálculo de FORRO</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="forro.css" />
+
+</head>
+
+<body>
+    <header><h1>CÁLCULO DE QUANTIDADE DE FORRO</h1>
+    </header>
+
+    <main>
+
+        <h2>Cômodos</h2>
+        <ul id="ul_comodos">
+            <li id="li_comodos"><label class="la_comodo">Largura</label><input id="largura" value=""><label class="la_comodo">Comprimento</label><input id="comprimento" value=""></li>
+        </ul>
+        
+        <button onclick="addComodo()">Adicionar cômodo</button>
+        <span id="linhas"></span>
+
+        <p></p>
+
+        <p><button onclick="myFunction()">Calcular</button></p>
+        
+
+        <p>Área total:<span id="area"></span> m²</p>
+        <p>Talas:<span id="talas"></span></p>
+        <p>No sistema vai cadastrar:<span id="sist"></span> metros</p>
+
+    
+
+        <footer>
+            <p></p>
+            <p></p>
+            <button onclick="document.location.reload(true)">REINICIA</button>
+        </footer>
+    </main>
+
+    <script>
+        function myFunction() {
+          const tala6 = 1.2;
+          var largura = document.getElementById("largura").value;
+          var comprimento = document.getElementById("comprimento").value;
+
+          var numLarg = parseFloat(largura.replace(',', '.'));
+          var numComp = parseFloat(comprimento.replace(',', '.'));
+        
+          var area = numLarg * numComp;
+          var restotalas = area % tala6;
+          
+          if (restotalas == 0 || restotalas == 1.20) {
+               let talas = area / 1.2}
+               else {
+                   talas = Math.trunc(area / tala6) + 1
+               }
+               var sist = talas * 1.2
+          
+
+          document.getElementById("area").innerHTML = area.toFixed(2);
+          document.getElementById("talas").innerHTML = talas.toFixed(2);
+          document.getElementById("sist").innerHTML = sist.toFixed(2);
+        }
+
+        function addComodo() {
+           let li_comodo = document.getElementById("li_comodos")
+           let li_copia = li_comodo.cloneNode(true)
+
+           document.getElementById("largura").value = ""
+           document.getElementById("comprimento").value = ""
+           
+           document.getElementById("ul_comodos").appendChild(li_copia)
+           
+           /*
+            var larg = document.createElement("INPUT");
+            larg.setAttribute("id", "larg");
+            
+
+            var comp = document.createElement("INPUT");
+            comp.setAttribute("id", "comp");
+            
+            escreve = document.getElementById("linhas")
+            escreve.appendChild(larg);
+            */
+        }
+
+
+
+        </script>
+</body>
+</html>
