@@ -4,30 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
-
+    <link rel="stylesheet" href="style.css">
     <title>Cálculo de FORRO</title>
 </head>
 <body>
-    <header>
-        <h1>Cálculo de Forro </h1>
-    </header>
+    <section class="site">
+        <div class="container">
+            <header>
+                <a href="#" class="titulo">CALCULADORA DE FORRO</a>
+            </header>
 
-    <main>
-        <section id="tam_talas"></section>
+            <main>
+                <div class="tam_talas">
+                    <h2>Tamanhos da Tala</h2>
+                    <label>
+                        <input type="radio" name="btn" checked>                        
+                        <span class="m6"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="btn">                        
+                        <span class=m5></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="btn">                        
+                        <span class="m4"></span>
+                    </label>
+                </div>
 
-        <section id="comodos"></section>
+                <div class="med_comodos">
+                    <h2>Medida dos Cômodos</h2>
+                    <ul id="lista_comodos">
+                        <li><input id="larg1">m x <input id="comp1">m = <span id="comodr_result">m²</span></li>                        
+                    </ul>
+                    <div class="btn_comodos"><a href="#" onclick="addComodos()" >+ CÔMODOS</a></div>
+                </div>
 
-        <section id="total_forro"></section>
+                <div class="result_forro">
+                    <h2>Resultado - FORRO</h2>
+                    <div>Área total: <span style="font-weight: bold;">XX</span>m²</div>
+                    <div>Quantidade de talas:</div>
+                    <div>Área total das talas: <span style="font-weight: bold;">XX</span>m²</div>
+                </div>
 
-        <section id="total_rodaforro"></section>
+                <div class="result_rodaforro">
+                    <h2>Resultado - RODAFORRO</h2>
+                    <div>Total: <span style="font-weight: bold;">XX</span>m²</div>
+                    <div>Quantidade de talas:</div>
+                    <div>Total de rodaforro: <span style="font-weight: bold;">XX</span>m</div>
+                </div>
 
-        <section id="acabamento"></section>
+                <div class="result_acab">
+                    <h3>Sugestão de acabamento</h3>
+                    <div><span>XX</span> cantos</div>
+                </div>
 
-        <section id="resultados"></section>
-    </main>
+            </main>
+        </div>
+    </section>
 
-    <footer></footer>
-    
+
+<script>
+
+    function addComodos(){
+        document.getElementById("lista_comodos").insertAdjacentHTML("beforeend",'<li><input id="larg1">m x <input id="comp1">m = <span id="comodr_result">m²</span></li>')     
+    }
+
+</script>
 </body>
 </html>

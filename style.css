@@ -1,6 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: black
+}
 
+.site {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    background: url(bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 50px;
+}
+
+.container {
+    position: relative;
+    width: calc(100% - 100px);
+    min-width: 640px;
+    max-width: 800px;
+    min-height: calc(100vh - 280px);
+    min-height: 300px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    padding: 60px 20px 0px;
+}
+
+header {
+    position: absolute;
+    min-width: 500px;
+    top: -30px;
+    right: 20px;
+    left: 20px;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+header .titulo {
+    color: #01142F;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+h2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #01142F;
+    font-size: 1.2rem;
+    width: 100%;
+    height: auto;
+}
+
+h3 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #01142F;
+    font-size: 1rem;
+    height: auto;
+}
+
+.tam_talas {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.tam_talas label {
+    width: 23%;
+    height: 60px;
+    margin: 0 4%;
+}
+
+.tam_talas label input {
+    display: none;
+
+}
+
+.tam_talas label span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #04285c;
+    border-radius: 10px;
+}
+
+.tam_talas label span.m6::before {
+    content: '6m';
+    position: absolute;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    background: linear-gradient(to bottom, #01142F, #0147a8);
+    border-radius: 6px;
+    top:  3px;
+    left: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+                inset 2px 2px 2px rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-shadow: 0 0 20px black;
+    color: rgb(78, 100, 194);
+    transition: 0.6s;
+}
+
+.tam_talas label input:checked ~ span.m6::before {
+    content: '6m';
+    text-shadow: 0 0 20px rgb(255, 255, 0);
+    color: rgb(255, 255, 0);
+    background: linear-gradient(to top, #01142F, #2b82fd);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.tam_talas label span.m5::before {
+    content: '5m';
+    position: absolute;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    background: linear-gradient(to bottom, #01142F, #0147a8);
+    border-radius: 6px;
+    top:  3px;
+    left: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+                inset 2px 2px 2px rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-shadow: 0 0 20px black;
+    color: rgb(78, 100, 194);
+    transition: 0.6s;
+}
+
+.tam_talas label input:checked ~ span.m5::before {
+    content: '5m';
+    text-shadow: 0 0 20px rgb(255, 255, 0);
+    color: rgb(255, 255, 0);
+    background: linear-gradient(to top, #01142F, #2b82fd);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.tam_talas label span.m4::before {
+    content: '4m';
+    position: absolute;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    background: linear-gradient(to bottom, #01142F, #0147a8);
+    border-radius: 6px;
+    top:  3px;
+    left: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+                inset 2px 2px 2px rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-shadow: 0 0 20px black;
+    color: rgb(78, 100, 194);
+    transition: 0.6s;
+}
+
+.tam_talas label input:checked ~ span.m4::before {
+    content: '4m';
+    text-shadow: 0 0 20px rgb(255, 255, 0);
+    color: rgb(255, 255, 0);
+    background: linear-gradient(to top, #01142F, #2b82fd);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.med_comodos {
+    position: relative;
+    margin-top: 20px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.med_comodos ul {
+    list-style: none;
+}
+
+.med_comodos li{
+    margin: 10px 0px;
+
+}
+
+.med_comodos input {
+    height: 40px;
+    width: 160px;
+    background-color: #9bc2f8;
+    border: 1px solid #0147a8;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+}
+
+.btn_comodos {
+    text-decoration: none;
+    color: #04285c;
+}
+
+.result_forro {
+    position: relative;
+    margin-top: 20px;
+    height: auto;
+    width: 49%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.result_rodaforro {
+    position: relative;
+    margin-top: 20px;
+    height: auto;
+    width: 49%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.result_acab {
+    position: relative;
+    margin-top: 20px;
+    padding: 10px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
