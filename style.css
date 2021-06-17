@@ -215,6 +215,7 @@ h3 {
 .med_comodos {
     position: relative;
     margin-top: 20px;
+    padding-bottom: 5px;
     height: auto;
     width: 100%;
     display: flex;
@@ -227,13 +228,41 @@ h3 {
     border-radius: 10px;
 }
 
+.med_comodos a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 0.8em;
+    transition: 0.5s;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2px;
+    box-shadow: 2px 2px 5px black;
+}
+
+.med_comodos a:hover{
+    letter-spacing: 2px;
+    box-shadow: none;
+}
+
 .med_comodos ul {
     list-style: none;
 }
 
 .med_comodos li{
+    display: flex;
+    align-items: center;
     margin: 10px 0px;
 
+}
+.med_comodos .comod_result span{
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-left: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+}
+.med_comodos .comod_result span::after {
+    content: "m²";
 }
 
 .med_comodos input {
