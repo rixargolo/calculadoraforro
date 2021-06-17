@@ -18,23 +18,26 @@
                 <div class="tam_talas">
                     <h2>Tamanhos da Tala</h2>
                     <label>
-                        <input type="radio" name="btn" checked>                        
+                        <input type="radio" id="btn_tam_talas_6" name="btn" checked>                        
                         <span class="m6"></span>
                     </label>
                     <label>
-                        <input type="radio" name="btn">                        
+                        <input type="radio" id="btn_tam_talas_5" name="btn">               
                         <span class=m5></span>
                     </label>
                     <label>
-                        <input type="radio" name="btn">                        
+                        <input type="radio" id="btn_tam_talas_4" name="btn">
                         <span class="m4"></span>
                     </label>
                 </div>
 
                 <div class="med_comodos">
                     <h2>Medida dos Cômodos</h2>
-                    <ul id="lista_comodos"></ul>
+                    <ul id="lista_comodos">
+                        <!--li class="li_comod_result" id="li_comod1"><input id="larg1">m x <input id="comp1">m = <span id="comod_result1">m²</span></li-->
+                    </ul>
                     <div class="btn_add_comodos"><a href="#" onclick="addComodos()" >ADICIONAR CÔMODO</a></div>
+                    <div class="btn_add_comodos"><a href="#" onclick="removeComodos()" >REMOVER CÔMODO</a></div>
                     <!--div class="btn_rem_comodos"><a href="#" onclick="removeComodos()" >- CÔMODOS</a></div-->
                 </div>
 
@@ -49,7 +52,7 @@
                     <h2>Resultado - RODAFORRO</h2>
                     <div>Total: <span id="total_rodaforro">XX</span>m²</div>
                     <div>Quantidade de talas: <span id="talas_rodaforro"></span></div>
-                    <div>Total de rodaforro: <span id="sist_rodaforro">XX</span>m</div>
+                    <div>Total de rodaforro: <span id="sist_rodaforro"></span>m</div>
                 </div>
 
                 <div class="result_acab">
@@ -63,47 +66,49 @@
 
 
 <script>
-    const tala6 = 1.2;
-    cont_comodos = [];
+    const cont_comodos = [];
     var i = 0;
     var j = 1;
+    const c_tala = 1.2;
 
 
-    function addComodos(){
-        console.log("Função addComodos: " + cont_comodos)
+    function addComodos() {
         cont_comodos[i] = j;
-        document.getElementById("lista_comodos").insertAdjacentHTML("beforeend",'<li class="comod_result" id="li_comod'+ cont_comodos[i] +'"><input id="larg'+ cont_comodos[i] +'">m x <input id="comp'+ cont_comodos[i] +'">m = <span id="comod_result'+ cont_comodos[i] +'">m²</span></li>')
-        j +=1;
+        document.getElementById("lista_comodos").insertAdjacentHTML("beforeend",'<li class="li_comod_result" id="li_comod'+ cont_comodos[i] +'"><input id="larg'+ cont_comodos[i] +'">m x <input id="comp'+ cont_comodos[i] +'">m = <span id="comod_result'+ cont_comodos[i] +'">m²</span></li>')
         i +=1;
+        j +=1;
+        calcForro()
     }
 
-    // function removeComodos(){
-    //     console.log("-r-")
-    //     let e = document.getElementById("lista_comodos")
-
-    //     if (cont_comodos.length >= 0) {
-    //         e.removeChild(e.lastChild);
-    //         cont_comodos.pop();
-    //         console.log(cont_comodos);
-    //     }
-    // }
+    function removeComodos() {
+        if (cont_comodos.length > 1) {
+            console.log("comodos: " + cont_comodos)
+            console.log(" ----------- ")
+            var e = document.getElementById("lista_comodos");
+            e.removeChild(e.lastChild);
+            cont_comodos.pop();
+            console.log("comodos: " + cont_comodos)
+            calcForro()
+        }
+    }
 
     function calcComodo() {
-        var result_comod = document.getElementById("comod_result1");
+        for (i = 0; i < cont_comodos.length; i++) {
+            var larg = document.getElementById("larg" + cont_comodos[i]).value;
+            var comp = document.getElementById("comp" + cont_comodos[i]).value;
 
-        var larg = document.getElementById("larg1").value;
-        var comp = document.getElementById("comp1").value;
+            var numLarg = parseFloat(larg.replace(',', '.'));
+            var numComp = parseFloat(comp.replace(',', '.'));
+            
+            var area = numLarg * numComp;
 
-        var numLarg = parseFloat(larg.replace(',', '.'));
-        var numComp = parseFloat(comp.replace(',', '.'));
-        
-        var area = numLarg * numComp;
-
-        result_comod.innerHTML = area.toFixed(2);
+            document.getElementById("comod_result" + cont_comodos[i]).innerHTML = area.toFixed(2);
+        }
     }
 
     function calcForro() {
-        console.log("Função calcForro: " + cont_comodos)
+        var areat = 0
+        var rodaforro = 0
 
         var result_forro = document.getElementById("area_total_forro");
         var talas_forro = document.getElementById("talas_forro");
@@ -113,43 +118,38 @@
         var talas_rodaforro = document.getElementById("talas_rodaforro");
         var sist_rodaforro = document.getElementById("sist_rodaforro");
 
-        var largf = document.getElementById("larg1").value;
-        var compf = document.getElementById("comp1").value;
+        for (var i = 0; i < cont_comodos.length; i++) {
+            if (typeof cont_comodos[i] !== null) {
+                    var larg = document.getElementById("larg" + cont_comodos[i]).value;
+                    var comp = document.getElementById("comp" + cont_comodos[i]).value;
 
-        var numLargf = parseFloat(largf.replace(',', '.'));
-        var numCompf = parseFloat(compf.replace(',', '.'));
+                    var numlarg = parseFloat(larg.replace(',', '.'));
+                    var numcomp = parseFloat(comp.replace(',', '.'));
+
+                    areat = areat + (numlarg * numcomp)
+                    rodaforro = rodaforro + ((numlarg + numcomp) * 2);
+                    
+                    var talas = Math.ceil(areat / c_tala);
+                    var sist = (talas * c_tala).toFixed(2);
+
+                    var talas_rf = Math.ceil(rodaforro / 6);
+                    var sist_rf = (talas_rf * 6).toFixed(2);
+                }
+        }
         
-        var areaf = numLargf * numCompf;
-        var rodaforro = (numLargf + numCompf) * 2;
-
-        // Forro
-            console.log("areaf: " + areaf)
-        talas = Math.ceil(areaf / tala6);
-            console.log("talas: " + talas)
-        var sist = (talas * 1.2).toFixed(2)
-            console.log("sist: " + sist)
-
-        //Rodaforro
-        talas_rf = Math.ceil(rodaforro / 6)
-        var sist_rf = (talas_rf * 6).toFixed(2);
-
-        
-        result_forro.innerHTML = areaf;
+        result_forro.innerHTML = areat.toFixed(2);
         talas_forro.innerHTML = talas;
         total_area_forro.innerHTML = sist;
 
-        total_rodaforro.innerHTML = rodaforro;
+        total_rodaforro.innerHTML = rodaforro.toFixed(2);
         talas_rodaforro.innerHTML = talas_rf;
         sist_rodaforro.innerHTML = sist_rf;
 
     }
 
+    window.onload = addComodos();
     document.addEventListener("input", calcComodo);
-    document.addEventListener("input", calcComodo);
-
     document.addEventListener("input", calcForro);
-    document.addEventListener("input", calcForro);
-
 </script>
 </body>
 </html>

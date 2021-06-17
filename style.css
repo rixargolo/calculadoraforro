@@ -255,13 +255,13 @@ h3 {
     margin: 10px 0px;
 
 }
-.med_comodos .comod_result span{
+.med_comodos .li_comod_result span{
     font-size: 1.4em;
     font-weight: 600;
     margin-left: 10px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
 }
-.med_comodos .comod_result span::after {
+.med_comodos .li_comod_result span::after {
     content: "m²";
 }
 
