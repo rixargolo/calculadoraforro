@@ -149,5 +149,17 @@
     document.addEventListener("input", calcComodo);
     document.addEventListener("input", calcForro);
 </script>
+<script>
+    /* PERMITE APENAS NÚMERO (COM ,) NO INPUT  */
+    function validaInput(input) {
+        let ipt = input.value
+        if (ipt[ipt.length - 1].replace(/[^0-9|\,]/g, '') == '') {
+            window.alert("Digite apenas números")
+        }
+        ipt = ipt.replace(/[^0-9|\,]/g, '')
+        input.value = ipt
+    }
+
+</script>
 </body>
 </html>
