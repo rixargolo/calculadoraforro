@@ -1,36 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<title>Exemplo de Evento DOM</title>
-
-<style>
-#t { border: 1px solid red }
-#t1 { background-color: pink; }
-</style>
-
-<script>
-// Função para mudar o conteúdo de t2
-function modifyText() {
-  var t2 = document.getElementById("t2");
-  t2.firstChild.nodeValue = "three";
-}
-
-// Função para adicionar uma espera de evento em t
-function load() {
-  var el = document.getElementById("t");
-  el.addEventListener("click", modifyText, false);
-}
-
-document.addEventListener("DOMContentLoaded", load, false);
-</script>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cálculo de FORRO</title>
 </head>
 <body>
+    <section class="site">
+        <div class="container">
+            <header>
+                <a href="#" class="titulo">CALCULADORA DE FORRO</a>
+            </header>
 
-<table id="t">
-   <tr><td id="t1">one</td></tr>
-   <tr><td id="t2">two</td></tr>
-</table>
+            <main>
+                <div class="tam_talas">
+                    <h2>Tamanhos da Tala</h2>
+                    <label>
+                        <input type="radio" id="btn_tam_talas_6" name="btn" checked>                        
+                        <span class="m6"></span>
+                    </label>
+                    <label>
+                        <input type="radio" id="btn_tam_talas_5" name="btn">               
+                        <span class=m5></span>
+                    </label>
+                    <label>
+                        <input type="radio" id="btn_tam_talas_4" name="btn">
+                        <span class="m4"></span>
+                    </label>
+                </div>
 
+                <div class="result_forro">
+                    <h2>FORRO</h2>
+                    <div>Área total: <span id="area_total_forro">--</span> m²</div>
+                    <div>Quantidade de talas: <span id="talas_forro">--</span></div>
+                    <div>Colocar no sistema: <span id="area_total_talas">--</span> m²</div>
+                </div>
+
+                <div class="result_rodaforro">
+                    <h2>RODAFORRO</h2>
+                    <div>Total: <span id="total_rodaforro">XX</span> m</div>
+                    <div>Quantidade de talas: <span id="talas_rodaforro"></span></div>
+                    <div>Colocar no sistema: <span id="sist_rodaforro"></span> m</div>
+                </div>
+
+                <div class="med_comodos">
+                    <h2>Medida dos Cômodos</h2>
+                    <ul id="lista_comodos">
+                        <!--li class="li_comod_result" id="li_comod1"><input id="larg1">m x <input id="comp1">m = <span id="comod_result1">m²</span></li-->
+                    </ul>
+                    <div class="btn_add_comodos"><a href="#" onclick="addComodos()" >ADICIONAR CÔMODO</a></div>
+                    <div class="btn_add_comodos"><a href="#" onclick="removeComodos()" >REMOVER CÔMODO</a></div>
+                    <!--div class="btn_rem_comodos"><a href="#" onclick="removeComodos()" >- CÔMODOS</a></div-->
+                </div>
+
+                <div class="result_acab">
+                    <h3>Sugestão de acabamento</h3>
+                    <div><span>XX</span> cantos</div>
+                </div>
+
+            </main>
+        </div>
+    </section>
+
+
+<script>
+    const cont_comodos = [1,2,3,4,5,6,7,8,9];
+    let i = 0;
+    const c_tala = 1.2;
+    const lista_comodos = document.getElementById("lista_comodos")
+
+
+    function addComodos() {
+        lista_comodos.insertAdjacentHTML("beforeend",'<li class="li_comod_result" id="li_comod'+ cont_comodos[i] +'"><input id="larg'+ cont_comodos[i] +'">m x <input id="comp'+ cont_comodos[i] +'">m = <span id="comod_result'+ cont_comodos[i] +'"></span></li>')
+        i +=1
+        console.log("Controle cont_comodos:",cont_comodos[i])
+    }
+
+    function removeComodos() {
+            lista_comodos.removeChild(lista_comodos.lastChild);
+            i -=1
+            console.log("Controle cont_comodos:",cont_comodos[i])
+    }
+
+
+    function calcComodo() {
+        for (i = 0; i < cont_comodos.length; i++) {
+            var larg = document.getElementById("larg" + cont_comodos[i]).value;
+            var comp = document.getElementById("comp" + cont_comodos[i]).value;
+
+            var numLarg = parseFloat(larg.replace(',', '.'));
+            var numComp = parseFloat(comp.replace(',', '.'));
+            
+            var area = numLarg * numComp;
+
+            document.getElementById("comod_result" + cont_comodos[i]).innerHTML = area.toFixed(2);
+        }
+    }
+
+    window.onload = addComodos();
+    document.addEventListener("input", calcComodo);
+</script>
+
+<script>
+    /* PERMITE APENAS NÚMERO (COM ,) NO INPUT  */
+    function validaInput(input) {
+        let ipt = input.value
+        if (ipt[ipt.length - 1].replace(/[^0-9|\,]/g, '') == '') {
+            window.alert("Digite apenas números")
+        }
+        ipt = ipt.replace(/[^0-9|\,]/g, '')
+        input.value = ipt
+    }
+
+</script>
 </body>
 </html>
