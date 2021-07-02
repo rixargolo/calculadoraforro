@@ -31,6 +31,20 @@
                     </label>
                 </div>
 
+                <div class="result_forro">
+                    <h2>FORRO</h2>
+                    <div>Área total: <span id="area_total_forro">--</span> m²</div>
+                    <div>Quantidade de talas: <span id="talas_forro">--</span></div>
+                    <div>Colocar no sistema: <span id="area_total_talas">--</span> m²</div>
+                </div>
+
+                <div class="result_rodaforro">
+                    <h2>RODAFORRO</h2>
+                    <div>Total: <span id="total_rodaforro">XX</span> m</div>
+                    <div>Quantidade de talas: <span id="talas_rodaforro"></span></div>
+                    <div>Colocar no sistema: <span id="sist_rodaforro"></span> m</div>
+                </div>
+
                 <div class="med_comodos">
                     <h2>Medida dos Cômodos</h2>
                     <ul id="lista_comodos">
@@ -39,20 +53,6 @@
                     <div class="btn_add_comodos"><a href="#" onclick="addComodos()" >ADICIONAR CÔMODO</a></div>
                     <div class="btn_add_comodos"><a href="#" onclick="removeComodos()" >REMOVER CÔMODO</a></div>
                     <!--div class="btn_rem_comodos"><a href="#" onclick="removeComodos()" >- CÔMODOS</a></div-->
-                </div>
-
-                <div class="result_forro">
-                    <h2>Resultado - FORRO</h2>
-                    <div>Área total: <span id="area_total_forro">--</span>m²</div>
-                    <div>Quantidade de talas:<span id="talas_forro">--</span></div>
-                    <div>Área total das talas: <span id="area_total_talas">--</span>m²</div>
-                </div>
-
-                <div class="result_rodaforro">
-                    <h2>Resultado - RODAFORRO</h2>
-                    <div>Total: <span id="total_rodaforro">XX</span>m²</div>
-                    <div>Quantidade de talas: <span id="talas_rodaforro"></span></div>
-                    <div>Total de rodaforro: <span id="sist_rodaforro"></span>m</div>
                 </div>
 
                 <div class="result_acab">
@@ -68,15 +68,13 @@
 <script>
     const cont_comodos = [];
     var i = 0;
-    var j = 1;
     const c_tala = 1.2;
 
 
     function addComodos() {
-        cont_comodos[i] = j;
-        document.getElementById("lista_comodos").insertAdjacentHTML("beforeend",'<li class="li_comod_result" id="li_comod'+ cont_comodos[i] +'"><input id="larg'+ cont_comodos[i] +'">m x <input id="comp'+ cont_comodos[i] +'">m = <span id="comod_result'+ cont_comodos[i] +'">m²</span></li>')
+        cont_comodos[i] = i;
+        document.getElementById("lista_comodos").insertAdjacentHTML("beforeend",'<li class="li_comod_result" id="li_comod'+ cont_comodos[i] +'"><input id="larg'+ cont_comodos[i] +'">m x <input id="comp'+ cont_comodos[i] +'">m = <span id="comod_result'+ cont_comodos[i] +'"></span></li>')
         i +=1;
-        j +=1;
         calcForro()
     }
 
