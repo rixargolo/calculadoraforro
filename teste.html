@@ -48,11 +48,8 @@
                 <div class="med_comodos">
                     <h2>Medida dos Cômodos</h2>
                     <ul id="lista_comodos">
-                        <!--li class="li_comod_result" id="li_comod1"><input id="larg1">m x <input id="comp1">m = <span id="comod_result1">m²</span></li-->
                     </ul>
                     <div class="btn_add_comodos"><a href="#" onclick="addComodos()" >ADICIONAR CÔMODO</a></div>
-                    <div class="btn_add_comodos"><a href="#" onclick="removeComodos()" >REMOVER CÔMODO</a></div>
-                    <!--div class="btn_rem_comodos"><a href="#" onclick="removeComodos()" >- CÔMODOS</a></div-->
                 </div>
 
                 <div class="result_acab">
@@ -66,36 +63,51 @@
 
 
 <script>
-    const cont_comodos = [1,2,3,4,5,6,7,8,9];
+    //const cont_comodos = [1,2,3,4,5,6,7,8,9];
     let i = 0;
     const c_tala = 1.2;
     const lista_comodos = document.getElementById("lista_comodos")
 
 
     function addComodos() {
-        lista_comodos.insertAdjacentHTML("beforeend",'<li class="li_comod_result" id="li_comod'+ cont_comodos[i] +'"><input id="larg'+ cont_comodos[i] +'">m x <input id="comp'+ cont_comodos[i] +'">m = <span id="comod_result'+ cont_comodos[i] +'"></span></li>')
-        i +=1
-        console.log("Controle cont_comodos:",cont_comodos[i])
+        if (i>0){
+            lista_comodos.insertAdjacentHTML("beforeend",'<li class="li_comod_result" id="li_comod'+ i +'"><input id="larg'+ i +'">m x <input id="comp'+ i +'">m = <span id="comod_result'+ i +'"></span><a class="btn_remover" herf="#" onclick="removeComodos(this.parentNode.id)">X</a></li>')
+        } else {
+            lista_comodos.insertAdjacentHTML("beforeend",'<li class="li_comod_result" id="li_comod'+ i +'"><input id="larg'+ i +'">m x <input id="comp'+ i +'">m = <span id="comod_result'+ i +'"></span></li>')
+        }
+        i++
+        console.log("Controle cont_comodos:",i)
     }
 
-    function removeComodos() {
-            lista_comodos.removeChild(lista_comodos.lastChild);
-            i -=1
-            console.log("Controle cont_comodos:",cont_comodos[i])
+    function removeComodos(li_comod) {
+            let li = document.getElementById(li_comod)
+            lista_comodos.removeChild(li)
+
+            for (let k = 0; k < lista_comodos.childNodes.length; k++) {
+                // console.log("lista_comodos.childNodes["+k+"] = ",lista_comodos.childNodes[k].nodeName)
+                // console.log("lista_comodos.childNodes["+k+"].id = ",lista_comodos.childNodes[k].id)
+
+                if (lista_comodos.childNodes[k].nodeName == "LI") { 
+                    lista_comodos.childNodes[k].id = "li_comod"+k
+                }
+            }
+
+            i--
+            console.log("Controle cont_comodos:",i)
     }
 
 
     function calcComodo() {
-        for (i = 0; i < cont_comodos.length; i++) {
-            var larg = document.getElementById("larg" + cont_comodos[i]).value;
-            var comp = document.getElementById("comp" + cont_comodos[i]).value;
+        for (let j = 0; j < lista_comodos.childNodes.length; j++) {
+            var larg = document.getElementById("larg" + j).value;
+            var comp = document.getElementById("comp" + j).value;
 
             var numLarg = parseFloat(larg.replace(',', '.'));
             var numComp = parseFloat(comp.replace(',', '.'));
             
             var area = numLarg * numComp;
 
-            document.getElementById("comod_result" + cont_comodos[i]).innerHTML = area.toFixed(2);
+            document.getElementById("comod_result" + j).innerHTML = area.toFixed(2);
         }
     }
 

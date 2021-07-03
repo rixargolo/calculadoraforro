@@ -325,3 +325,9 @@ h3 {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
 }
+
+a.btn_remover {
+    cursor: pointer; 
+    margin-left:10px; 
+    padding: 0 10px;
+}
